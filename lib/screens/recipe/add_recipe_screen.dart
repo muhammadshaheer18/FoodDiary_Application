@@ -35,17 +35,51 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
   ];
   String _selectedCategory = 'Dinner';
 
-  // Sample image selection
-  final List<String> _sampleImages = [
-    'https://images.unsplash.com/photo-1546069901-ba9599a7e63c',
-    'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38',
-    'https://images.unsplash.com/photo-1565958011703-44f9829ba187',
-    'https://images.unsplash.com/photo-1512621776951-a57141f2eefd',
-    'https://images.unsplash.com/photo-1473093295043-cdd812d0e601',
+  // Expanded image selection options
+  final List<String> _breakfastImages = [
+    'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', // Avocado toast
+    'https://images.unsplash.com/photo-1550583724-b2692b85b150?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', // Pancakes
+    'https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', // Omelette
+    'https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', // French toast
+    'https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', // Yogurt bowl
   ];
-  String _selectedImage =
-      'https://images.unsplash.com/photo-1546069901-ba9599a7e63c';
 
+  final List<String> _mainCourseImages = [
+    'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', // Pizza
+    'https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', // Burger
+    'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', // Salad
+    'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', // Pasta
+    'https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', // Steak
+    'https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', // Ramen
+    'https://images.unsplash.com/photo-1518779578993-ec3579fee39f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', // Sushi
+    'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', // Tacos
+  ];
+
+  final List<String> _dessertImages = [
+    'https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', // Donuts
+    'https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', // Ice cream
+    'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', // Chocolate cake
+    'https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', // Macarons
+    'https://images.unsplash.com/photo-1603532648955-039310d9ed75?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', // Cheesecake
+  ];
+
+  final List<String> _healthyImages = [
+    'https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', // Smoothie bowl
+    'https://images.unsplash.com/photo-1543351611-58f69d7c1781?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', // Buddha bowl
+    'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', // Veggie salad
+    'https://images.unsplash.com/photo-1546069901-d5bfd2cbfb1f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', // Fruit platter
+  ];
+
+  final List<String> _beverageImages = [
+    'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', // Coffee
+    'https://images.unsplash.com/photo-1551029506-0807df4e2031?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', // Smoothie
+    'https://images.unsplash.com/photo-1558160074-4d7d8bdf4256?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', // Cocktail
+    'https://images.unsplash.com/photo-1437418747212-8d9709afab22?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', // Tea
+    'https://images.unsplash.com/photo-1551269901-5c5e14c25df7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', // Juice
+  ];
+
+  String _selectedImage =
+      'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
   double _rating = 4.5;
 
   @override
@@ -77,6 +111,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
         const SnackBar(
           content: Text('Recipe added successfully!'),
           backgroundColor: Color(0xFFFF9800),
+          duration: Duration(seconds: 2),
         ),
       );
 
@@ -84,19 +119,115 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
     }
   }
 
+  Widget _buildImageGrid(List<String> images) {
+    return GridView.builder(
+      padding: const EdgeInsets.all(16),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 16,
+        mainAxisSpacing: 16,
+        childAspectRatio: 1,
+      ),
+      itemCount: images.length,
+      itemBuilder: (context, index) {
+        final image = images[index];
+        return GestureDetector(
+          onTap: () {
+            setState(() {
+              _selectedImage = image;
+              imageUrlController.text = image;
+            });
+            Navigator.pop(context);
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              border:
+                  image == _selectedImage
+                      ? Border.all(color: const Color(0xFFFF9800), width: 3)
+                      : null,
+              image: DecorationImage(
+                image: NetworkImage(image),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void _showImageSelectionDialog() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder:
+          (ctx) => SizedBox(
+            height: MediaQuery.of(context).size.height * 0.8,
+            child: DefaultTabController(
+              length: 5,
+              child: Column(
+                children: [
+                  const TabBar(
+                    isScrollable: true,
+                    labelColor: Color(0xFFFF9800),
+                    unselectedLabelColor: Colors.grey,
+                    indicatorColor: Color(0xFFFF9800),
+                    tabs: [
+                      Tab(text: 'Breakfast'),
+                      Tab(text: 'Main Courses'),
+                      Tab(text: 'Desserts'),
+                      Tab(text: 'Healthy'),
+                      Tab(text: 'Beverages'),
+                    ],
+                  ),
+                  Expanded(
+                    child: TabBarView(
+                      children: [
+                        _buildImageGrid(_breakfastImages),
+                        _buildImageGrid(_mainCourseImages),
+                        _buildImageGrid(_dessertImages),
+                        _buildImageGrid(_healthyImages),
+                        _buildImageGrid(_beverageImages),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // Implement upload functionality
+                        Navigator.pop(context);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFFFF9800),
+                        foregroundColor: Colors.white,
+                        minimumSize: const Size(double.infinity, 50),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: const Text('Upload Your Own Image'),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    // Define our yellow-orange theme colors
-    const primaryColor = Color(0xFFFF9800); // Orange
-    const accentColor = Color(0xFFFFB74D); // Light Orange
+    const primaryColor = Color(0xFFFF9800);
     const backgroundColor = Colors.white;
-    const cardColor = Color(0xFFFFECB3); // Very Light Orange
+    const cardColor = Color(0xFFFFECB3);
 
     return Theme(
       data: Theme.of(context).copyWith(
         colorScheme: ColorScheme.light(
           primary: primaryColor,
-          secondary: accentColor,
+          secondary: const Color(0xFFFFB74D),
           surface: cardColor,
           background: backgroundColor,
         ),
@@ -130,7 +261,6 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              // Show confirmation dialog if form has been edited
               if (titleController.text.isNotEmpty ||
                   descriptionController.text.isNotEmpty ||
                   taglineController.text.isNotEmpty) {
@@ -174,7 +304,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
             children: [
               // Hero image section with selection
               Container(
-                height: 200,
+                height: 220,
                 width: double.infinity,
                 margin: const EdgeInsets.only(bottom: 16),
                 child: Stack(
@@ -185,7 +315,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                       fit: BoxFit.cover,
                       errorBuilder:
                           (context, error, stackTrace) => Container(
-                            color: accentColor.withOpacity(0.3),
+                            color: const Color(0xFFFFB74D).withOpacity(0.3),
                             child: const Icon(
                               Icons.image,
                               size: 80,
@@ -201,70 +331,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                         foregroundColor: Colors.white,
                         mini: true,
                         child: const Icon(Icons.photo_library),
-                        onPressed: () {
-                          showModalBottomSheet(
-                            context: context,
-                            builder:
-                                (ctx) => Container(
-                                  height: 200,
-                                  padding: const EdgeInsets.all(16),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      const Text(
-                                        "Select Image",
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 16),
-                                      Expanded(
-                                        child: ListView.builder(
-                                          scrollDirection: Axis.horizontal,
-                                          itemCount: _sampleImages.length,
-                                          itemBuilder: (context, index) {
-                                            final image = _sampleImages[index];
-                                            return GestureDetector(
-                                              onTap: () {
-                                                setState(() {
-                                                  _selectedImage = image;
-                                                  imageUrlController.text =
-                                                      image;
-                                                });
-                                                Navigator.pop(ctx);
-                                              },
-                                              child: Container(
-                                                width: 120,
-                                                margin: const EdgeInsets.only(
-                                                  right: 12,
-                                                ),
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(12),
-                                                  border:
-                                                      image == _selectedImage
-                                                          ? Border.all(
-                                                            color: primaryColor,
-                                                            width: 3,
-                                                          )
-                                                          : null,
-                                                  image: DecorationImage(
-                                                    image: NetworkImage(image),
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                          );
-                        },
+                        onPressed: _showImageSelectionDialog,
                       ),
                     ),
                   ],
