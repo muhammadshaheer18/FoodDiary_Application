@@ -1,0 +1,26 @@
+obfuscation of password in (signup page)
+categories pixel bottom oberflowed by 1.2(homepage)
+Trending now should be made as real recipe cards (homepage)
+working/removal of Notification and Search Bar (homepage)
+Size Adjustment of AppBar (homepage)
+Orange should be converted to Yellow (homepage)
+See All removal in Todays Pick (homepage)
+Todays Pick to be made clickable (homepage)
+Number should be removed in categoris (homepage)
+
+image loading fast(recipepage)
+add more sample images
+the theme of recipedetails doesnot match yellow theme of app(recipepage)
+Changing of Profilepage colour (Profilepage)
+Something to be written in privacy policy (Profilepage)
+Email should show shaheer@gmail.com as adminemail that can be used for complaints(Profilepage)
+Remove Change password (Profilepage)
+logout not working on Profilepage (Profilepage)
+liked recipe ui not according to the theme(Profilepage)
+arrow to be removed from liked recipes (Profilepage)
+
+
+admin:
+recipecard: remove edit, feature and archive options
+make logout funtionality working
+remove + from app Bar
