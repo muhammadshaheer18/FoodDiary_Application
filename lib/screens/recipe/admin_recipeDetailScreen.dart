@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_null_comparison
+// ignore_for_file: unnecessary_null_comparison, deprecated_member_use
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -190,38 +190,6 @@ class _AdminRecipeDetailScreenState extends State<AdminRecipeDetailScreen> {
                 ),
               ),
             ),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CircleAvatar(
-                  backgroundColor: Colors.white,
-                  child: PopupMenuButton(
-                    icon: const Icon(Icons.more_vert, color: primaryColor),
-                    itemBuilder:
-                        (context) => [
-                          const PopupMenuItem(
-                            value: 'edit',
-                            child: Text('Edit Recipe'),
-                          ),
-                          const PopupMenuItem(
-                            value: 'feature',
-                            child: Text('Feature Recipe'),
-                          ),
-                          const PopupMenuItem(
-                            value: 'archive',
-                            child: Text('Archive Recipe'),
-                          ),
-                        ],
-                    onSelected: (value) {
-                      // Handle menu item selection
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('$value selected')),
-                      );
-                    },
-                  ),
-                ),
-              ),
-            ],
           ),
 
           // Recipe Details Section

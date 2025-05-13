@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -7,17 +9,23 @@ class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   Future<void> _signOut(BuildContext context) async {
-    await FirebaseAuth.instance.signOut();
-    Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);
+    try {
+      await FirebaseAuth.instance.signOut();
+      Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error signing out: ${e.toString()}')),
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
-    const primaryColor = Color(0xFF3A3042);
-    const accentColor = Color(0xFFBF9D7E);
-    const backgroundColor = Color(0xFFF9F5F0);
-    const textColor = Color(0xFF2F2235);
+    const primaryColor = Color(0xFFF5A623); // Yellow color
+    const accentColor = Color(0xFFFFFACD); // Light yellow
+    const backgroundColor = Colors.white; // White background
+    const textColor = Colors.black87;
 
     return Scaffold(
       backgroundColor: backgroundColor,
@@ -26,12 +34,12 @@ class ProfileScreen extends StatelessWidget {
           SliverAppBar(
             expandedHeight: 200,
             pinned: true,
-            backgroundColor: primaryColor,
+            backgroundColor: Color(0xFFF5A623),
             flexibleSpace: FlexibleSpaceBar(
               title: Text(
                 'My Profile',
                 style: GoogleFonts.playfairDisplay(
-                  color: Colors.white,
+                  color: const Color.fromARGB(221, 255, 255, 255),
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -59,12 +67,16 @@ class ProfileScreen extends StatelessWidget {
                   Container(
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      border: Border.all(color: accentColor, width: 3),
+                      border: Border.all(color: primaryColor, width: 3),
                     ),
                     child: CircleAvatar(
                       radius: 50,
-                      backgroundColor: accentColor.withOpacity(0.2),
-                      child: Icon(Icons.person, size: 50, color: primaryColor),
+                      backgroundColor: accentColor,
+                      child: Icon(
+                        Icons.person,
+                        size: 50,
+                        color: Colors.black87,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -91,30 +103,26 @@ class ProfileScreen extends StatelessWidget {
                           offset: const Offset(0, 4),
                         ),
                       ],
+                      border: Border.all(color: primaryColor.withOpacity(0.3)),
                     ),
                     child: Column(
                       children: [
                         _buildProfileOption(
                           context,
                           icon: Icons.email,
-                          title: "Email",
+                          title: "Contact Admin: shaheer@gmail.com",
                           onTap: () {},
+                          showArrow: false,
                         ),
-                        const Divider(height: 1, color: Color(0xFFD1BFA7)),
-                        _buildProfileOption(
-                          context,
-                          icon: Icons.lock_outline,
-                          title: "Change Password",
-                          onTap: () {},
-                        ),
-                        const Divider(height: 1, color: Color(0xFFD1BFA7)),
+                        const Divider(height: 1, color: Colors.grey),
                         _buildProfileOption(
                           context,
                           icon: Icons.privacy_tip_outlined,
                           title: "Privacy Policy",
-                          onTap: () {},
+                          onTap: () => _showPrivacyPolicy(context),
+                          showArrow: false,
                         ),
-                        const Divider(height: 1, color: Color(0xFFD1BFA7)),
+                        const Divider(height: 1, color: Colors.grey),
                         _buildProfileOption(
                           context,
                           icon: Icons.favorite,
@@ -126,6 +134,7 @@ class ProfileScreen extends StatelessWidget {
                                   builder: (_) => const LikedRecipesScreen(),
                                 ),
                               ),
+                          showArrow: false,
                         ),
                       ],
                     ),
@@ -139,13 +148,13 @@ class ProfileScreen extends StatelessWidget {
                       icon: const Icon(Icons.logout),
                       label: Text(
                         "Logout",
-                        style: GoogleFonts.merriweather(
+                        style: GoogleFonts.carroisGothic(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: primaryColor,
-                        foregroundColor: Colors.white,
+                        backgroundColor: const Color(0xFFF5A623),
+                        foregroundColor: const Color.fromRGBO(0, 0, 0, 0.867),
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
@@ -162,26 +171,71 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
+  void _showPrivacyPolicy(BuildContext context) {
+    showDialog(
+      context: context,
+      builder:
+          (context) => AlertDialog(
+            title: Text(
+              'Privacy Policy',
+              style: GoogleFonts.playfairDisplay(
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
+            ),
+            content: SingleChildScrollView(
+              child: Text(
+                '1. This app collects basic user information for authentication purposes.\n\n'
+                '2. Your email address is stored securely and will not be shared with third parties.\n\n'
+                '3. Liked recipes are stored in your personal account and visible only to you.\n\n'
+                '4. For any complaints or concerns, please contact the admin at shaheer@gmail.com.\n\n'
+                '5. By using this app, you agree to these terms and conditions.',
+                style: GoogleFonts.carroisGothic(),
+              ),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text(
+                  'OK',
+                  style: GoogleFonts.carroisGothic(
+                    color: const Color(0xFFF5A623),
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+            backgroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
+    );
+  }
+
   Widget _buildProfileOption(
     BuildContext context, {
     required IconData icon,
     required String title,
     VoidCallback? onTap,
+    bool showArrow = true,
   }) {
     return ListTile(
       onTap: onTap,
       contentPadding: EdgeInsets.zero,
-      leading: Icon(icon, color: const Color(0xFFBF9D7E), size: 28),
+      leading: Icon(icon, color: const Color(0xFFF5A623), size: 28),
       title: Text(
         title,
-        style: GoogleFonts.merriweather(
+        style: GoogleFonts.carroisGothic(
           fontSize: 16,
           fontWeight: FontWeight.w500,
-          color: const Color(0xFF2F2235),
+          color: Colors.black87,
         ),
       ),
       trailing:
-          onTap != null ? const Icon(Icons.arrow_forward_ios, size: 16) : null,
+          onTap != null && showArrow
+              ? const Icon(Icons.arrow_forward_ios, size: 16)
+              : null,
     );
   }
 }
@@ -230,9 +284,8 @@ class LikedRecipesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const primaryColor = Color(0xFF3A3042);
-    const accentColor = Color(0xFFBF9D7E);
-    const backgroundColor = Color(0xFFF9F5F0);
+    const primaryColor = Color(0xFFF5A623); // Yellow color
+    const backgroundColor = Colors.white;
 
     return Scaffold(
       backgroundColor: backgroundColor,
@@ -241,12 +294,12 @@ class LikedRecipesScreen extends StatelessWidget {
           SliverAppBar(
             expandedHeight: 150,
             pinned: true,
-            backgroundColor: primaryColor,
+            backgroundColor: Color(0xFFF5A623),
             flexibleSpace: FlexibleSpaceBar(
               title: Text(
                 'Liked Recipes',
                 style: GoogleFonts.playfairDisplay(
-                  color: Colors.white,
+                  color: Colors.black87,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -257,7 +310,7 @@ class LikedRecipesScreen extends StatelessWidget {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      primaryColor.withOpacity(0.8),
+                      const Color(0xFFF5A623).withOpacity(0.8),
                       primaryColor.withOpacity(0.5),
                     ],
                   ),
@@ -273,7 +326,9 @@ class LikedRecipesScreen extends StatelessWidget {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const SliverFillRemaining(
                     child: Center(
-                      child: CircularProgressIndicator(color: accentColor),
+                      child: CircularProgressIndicator(
+                        color: Color(0xFFF5A623),
+                      ),
                     ),
                   );
                 }
@@ -283,7 +338,7 @@ class LikedRecipesScreen extends StatelessWidget {
                     child: Center(
                       child: Text(
                         'Failed to load recipes',
-                        style: GoogleFonts.merriweather(),
+                        style: GoogleFonts.carroisGothic(),
                       ),
                     ),
                   );
@@ -298,14 +353,14 @@ class LikedRecipesScreen extends StatelessWidget {
                           Icon(
                             Icons.favorite_border,
                             size: 64,
-                            color: accentColor.withOpacity(0.5),
+                            color: const Color(0xFFF5A623).withOpacity(0.5),
                           ),
                           const SizedBox(height: 16),
                           Text(
                             'No liked recipes yet',
-                            style: GoogleFonts.merriweather(
+                            style: GoogleFonts.carroisGothic(
                               fontSize: 16,
-                              color: const Color(0xFF2F2235).withOpacity(0.6),
+                              color: Colors.black87.withOpacity(0.6),
                             ),
                           ),
                         ],
@@ -330,79 +385,79 @@ class LikedRecipesScreen extends StatelessWidget {
   }
 
   Widget _buildRecipeCard(BuildContext context, Map<String, dynamic> recipe) {
-    const accentColor = Color(0xFFBF9D7E);
-    const textColor = Color(0xFF2F2235);
+    const primaryColor = Color(0xFFF5A623);
+    const backgroundColor = Colors.white;
 
     return Card(
       margin: const EdgeInsets.only(bottom: 16),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: InkWell(
+      color: backgroundColor,
+      shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
-        onTap: () {
-          // Navigate to recipe detail
-        },
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Row(
-            children: [
-              // Recipe Image
-              ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child:
-                    recipe['imageUrl']?.isNotEmpty == true
-                        ? Image.network(
-                          recipe['imageUrl'],
-                          width: 80,
-                          height: 80,
-                          fit: BoxFit.cover,
-                          errorBuilder:
-                              (_, __, ___) => Container(
-                                width: 80,
-                                height: 80,
-                                color: accentColor.withOpacity(0.1),
-                                child: Icon(
-                                  Icons.restaurant,
-                                  color: accentColor,
-                                ),
+        side: BorderSide(
+          color: const Color(0xFFF5A623).withOpacity(0.3),
+          width: 1,
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Row(
+          children: [
+            // Recipe Image
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child:
+                  recipe['imageUrl']?.isNotEmpty == true
+                      ? Image.network(
+                        recipe['imageUrl'],
+                        width: 80,
+                        height: 80,
+                        fit: BoxFit.cover,
+                        errorBuilder:
+                            (_, __, ___) => Container(
+                              width: 80,
+                              height: 80,
+                              color: const Color(0xFFF5A623).withOpacity(0.1),
+                              child: Icon(
+                                Icons.restaurant,
+                                color: const Color(0xFFF5A623),
                               ),
-                        )
-                        : Container(
-                          width: 80,
-                          height: 80,
-                          color: accentColor.withOpacity(0.1),
-                          child: Icon(Icons.restaurant, color: accentColor),
-                        ),
-              ),
-              const SizedBox(width: 16),
-              // Recipe Info
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      recipe['title'],
-                      style: GoogleFonts.playfairDisplay(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        color: textColor,
+                            ),
+                      )
+                      : Container(
+                        width: 80,
+                        height: 80,
+                        color: primaryColor.withOpacity(0.1),
+                        child: Icon(Icons.restaurant, color: primaryColor),
                       ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+            ),
+            const SizedBox(width: 16),
+            // Recipe Info
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    recipe['title'],
+                    style: GoogleFonts.playfairDisplay(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black87,
                     ),
-                    const SizedBox(height: 4),
-                    Text(
-                      recipe['category'],
-                      style: GoogleFonts.merriweather(
-                        fontSize: 14,
-                        color: textColor.withOpacity(0.6),
-                      ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    recipe['category'],
+                    style: GoogleFonts.carroisGothic(
+                      fontSize: 14,
+                      color: Colors.black87.withOpacity(0.6),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              const Icon(Icons.chevron_right, color: accentColor),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
