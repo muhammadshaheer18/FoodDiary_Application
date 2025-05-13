@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -20,12 +22,12 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
   final ScrollController _scrollController = ScrollController();
   double _titleOpacity = 0.0;
 
-  // Sophisticated color scheme
-  static const Color primaryColor = Color(0xFF3A3042);
-  static const Color accentColor = Color(0xFFBF9D7E);
-  static const Color backgroundColor = Color(0xFFF9F5F0);
-  static const Color textColor = Color(0xFF2F2235);
-  static const Color dividerColor = Color(0xFFD1BFA7);
+  // Yellow and white color scheme
+  static const Color primaryColor = Color(0xFFFFD233); // Bright yellow
+  static const Color accentColor = Color(0xFFFFC000); // Darker yellow
+  static const Color backgroundColor = Colors.white; // White background
+  static const Color textColor = Color(0xFF333333); // Dark text
+  static const Color dividerColor = Color(0xFFFFE082); // Light yellow divider
 
   @override
   void initState() {
@@ -113,10 +115,10 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
                 duration: const Duration(milliseconds: 300),
                 child: Text(
                   recipe.title,
-                  style: GoogleFonts.playfairDisplay(
+                  style: GoogleFonts.carroisGothic(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
-                    color: Colors.white,
+                    color: textColor,
                   ),
                 ),
               ),
@@ -161,14 +163,14 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
                       children: [
                         Text(
                           recipe.title,
-                          style: GoogleFonts.playfairDisplay(
+                          style: GoogleFonts.carroisGothic(
                             fontSize: 32,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: textColor,
                             shadows: [
                               Shadow(
                                 blurRadius: 8.0,
-                                color: Colors.black.withOpacity(0.5),
+                                color: Colors.white.withOpacity(0.5),
                               ),
                             ],
                           ),
@@ -184,7 +186,7 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
               child: CircleAvatar(
                 backgroundColor: Colors.white,
                 child: IconButton(
-                  icon: const Icon(Icons.arrow_back, color: primaryColor),
+                  icon: const Icon(Icons.arrow_back, color: accentColor),
                   onPressed: () => Navigator.pop(context),
                 ),
               ),
@@ -217,7 +219,7 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
                       borderRadius: BorderRadius.circular(12),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.05),
+                          color: primaryColor.withOpacity(0.2),
                           blurRadius: 10,
                           offset: const Offset(0, 4),
                         ),
@@ -229,7 +231,7 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
                       children: [
                         Text(
                           'About This Recipe',
-                          style: GoogleFonts.playfairDisplay(
+                          style: GoogleFonts.carroisGothic(
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
                             color: textColor,
@@ -238,7 +240,7 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
                         const SizedBox(height: 12),
                         Text(
                           recipe.description,
-                          style: GoogleFonts.merriweather(
+                          style: GoogleFonts.carroisGothic(
                             fontSize: 15,
                             height: 1.7,
                             color: textColor.withOpacity(0.8),
@@ -256,12 +258,12 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
-                          const Divider(color: dividerColor, thickness: 1),
+                          const Divider(color: dividerColor, thickness: 2),
                           Container(
                             padding: const EdgeInsets.symmetric(horizontal: 16),
                             color: backgroundColor,
                             child: Icon(
-                              Icons.local_dining,
+                              Icons.restaurant,
                               color: accentColor,
                               size: 24,
                             ),
@@ -275,7 +277,7 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
                   // Comments section
                   Text(
                     "Community Comments",
-                    style: GoogleFonts.playfairDisplay(
+                    style: GoogleFonts.carroisGothic(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                       color: textColor,
@@ -316,7 +318,7 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
                         const SizedBox(height: 16),
                         Text(
                           "No comments yet",
-                          style: GoogleFonts.merriweather(
+                          style: GoogleFonts.carroisGothic(
                             fontSize: 16,
                             color: textColor.withOpacity(0.6),
                             fontStyle: FontStyle.italic,
@@ -353,7 +355,7 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
+                      color: primaryColor.withOpacity(0.2),
                       blurRadius: 10,
                       offset: const Offset(0, 4),
                     ),
@@ -369,12 +371,12 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
                           controller: _commentController,
                           decoration: InputDecoration(
                             hintText: "Share your thoughts...",
-                            hintStyle: GoogleFonts.merriweather(
+                            hintStyle: GoogleFonts.carroisGothic(
                               color: textColor.withOpacity(0.5),
                             ),
                             border: InputBorder.none,
                           ),
-                          style: GoogleFonts.merriweather(color: textColor),
+                          style: GoogleFonts.carroisGothic(color: textColor),
                           maxLines: null,
                         ),
                       ),
@@ -402,12 +404,12 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.03),
+            color: primaryColor.withOpacity(0.1),
             blurRadius: 8,
             offset: const Offset(0, 3),
           ),
         ],
-        border: Border.all(color: dividerColor.withOpacity(0.5), width: 1),
+        border: Border.all(color: dividerColor, width: 1),
       ),
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -437,7 +439,7 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
                     children: [
                       Text(
                         comment.userEmail,
-                        style: GoogleFonts.merriweather(
+                        style: GoogleFonts.carroisGothic(
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
                           color: textColor,
@@ -446,7 +448,7 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
                       const SizedBox(height: 4),
                       Text(
                         _formatTimestamp(comment.timestamp),
-                        style: GoogleFonts.merriweather(
+                        style: GoogleFonts.carroisGothic(
                           fontSize: 12,
                           color: textColor.withOpacity(0.6),
                           fontStyle: FontStyle.italic,
@@ -455,7 +457,7 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
                       const SizedBox(height: 8),
                       Text(
                         comment.text,
-                        style: GoogleFonts.merriweather(
+                        style: GoogleFonts.carroisGothic(
                           fontSize: 14,
                           height: 1.5,
                           color: textColor.withOpacity(0.8),
@@ -481,7 +483,7 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
           const SizedBox(width: 8),
           Text(
             text,
-            style: GoogleFonts.merriweather(
+            style: GoogleFonts.carroisGothic(
               fontSize: 14,
               color: textColor.withOpacity(0.7),
             ),

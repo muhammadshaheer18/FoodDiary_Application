@@ -272,7 +272,7 @@ class _AdminRecipeDetailScreenState extends State<AdminRecipeDetailScreen> {
                         const SizedBox(height: 12),
                         Text(
                           recipe.description,
-                          style: GoogleFonts.merriweather(
+                          style: GoogleFonts.carroisGothic(
                             fontSize: 15,
                             height: 1.7,
                             color: textColor.withOpacity(0.8),
@@ -352,7 +352,7 @@ class _AdminRecipeDetailScreenState extends State<AdminRecipeDetailScreen> {
                         const SizedBox(height: 16),
                         Text(
                           "No comments yet",
-                          style: GoogleFonts.merriweather(
+                          style: GoogleFonts.carroisGothic(
                             fontSize: 16,
                             color: textColor.withOpacity(0.6),
                             fontStyle: FontStyle.italic,
@@ -439,7 +439,7 @@ class _AdminRecipeDetailScreenState extends State<AdminRecipeDetailScreen> {
                           children: [
                             Text(
                               comment.userEmail,
-                              style: GoogleFonts.merriweather(
+                              style: GoogleFonts.carroisGothic(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 14,
                                 color: textColor,
@@ -448,7 +448,7 @@ class _AdminRecipeDetailScreenState extends State<AdminRecipeDetailScreen> {
                             const SizedBox(height: 4),
                             Text(
                               _formatTimestamp(comment.timestamp),
-                              style: GoogleFonts.merriweather(
+                              style: GoogleFonts.carroisGothic(
                                 fontSize: 12,
                                 color: textColor.withOpacity(0.6),
                                 fontStyle: FontStyle.italic,
@@ -457,7 +457,7 @@ class _AdminRecipeDetailScreenState extends State<AdminRecipeDetailScreen> {
                             const SizedBox(height: 8),
                             Text(
                               comment.text,
-                              style: GoogleFonts.merriweather(
+                              style: GoogleFonts.carroisGothic(
                                 fontSize: 14,
                                 height: 1.5,
                                 color: textColor.withOpacity(0.8),
@@ -506,7 +506,7 @@ class _AdminRecipeDetailScreenState extends State<AdminRecipeDetailScreen> {
           const SizedBox(width: 8),
           Text(
             text,
-            style: GoogleFonts.merriweather(
+            style: GoogleFonts.carroisGothic(
               fontSize: 14,
               color: textColor.withOpacity(0.7),
             ),
@@ -550,7 +550,7 @@ class _AdminRecipeDetailScreenState extends State<AdminRecipeDetailScreen> {
                   Text(
                     "Are you sure you want to delete this comment? This action cannot be undone.",
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.merriweather(
+                    style: GoogleFonts.carroisGothic(
                       fontSize: 14,
                       height: 1.5,
                       color: textColor.withOpacity(0.7),
@@ -575,7 +575,7 @@ class _AdminRecipeDetailScreenState extends State<AdminRecipeDetailScreen> {
                         onPressed: () => Navigator.pop(context),
                         child: Text(
                           "Cancel",
-                          style: GoogleFonts.merriweather(
+                          style: GoogleFonts.carroisGothic(
                             color: accentColor,
                             fontWeight: FontWeight.w500,
                           ),
@@ -601,7 +601,7 @@ class _AdminRecipeDetailScreenState extends State<AdminRecipeDetailScreen> {
                             SnackBar(
                               content: Text(
                                 "Comment deleted",
-                                style: GoogleFonts.merriweather(),
+                                style: GoogleFonts.carroisGothic(),
                               ),
                               backgroundColor: primaryColor,
                               behavior: SnackBarBehavior.floating,
@@ -613,7 +613,7 @@ class _AdminRecipeDetailScreenState extends State<AdminRecipeDetailScreen> {
                         },
                         child: Text(
                           "Delete",
-                          style: GoogleFonts.merriweather(
+                          style: GoogleFonts.carroisGothic(
                             color: Colors.white,
                             fontWeight: FontWeight.w500,
                           ),
