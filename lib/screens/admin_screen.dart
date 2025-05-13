@@ -87,11 +87,6 @@ class AdminPage extends StatelessWidget {
               onPressed: () => _logout(context),
               tooltip: "Logout",
             ),
-            IconButton(
-              icon: const Icon(Icons.add_circle_outline, size: 28),
-              onPressed: () => Navigator.pushNamed(context, '/add-recipe'),
-              tooltip: "Add New Recipe",
-            ),
           ],
         ),
         body: BlocBuilder<RecipeBloc, RecipeState>(

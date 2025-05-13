@@ -1,7 +1,7 @@
-obfuscation of password in (signup page)
-categories pixel bottom oberflowed by 1.2(homepage)
+obfuscation of password in (signup page) DONE
+categories pixel bottom oberflowed by 1.2(homepage) DONE
 Trending now should be made as real recipe cards (homepage)
-working/removal of Notification and Search Bar (homepage)
+working/removal of Notification and Search Bar (homepage) DONE
 Size Adjustment of AppBar (homepage)
 Orange should be converted to Yellow (homepage)
 See All removal in Todays Pick (homepage)
@@ -17,10 +17,10 @@ Email should show shaheer@gmail.com as adminemail that can be used for complaint
 Remove Change password (Profilepage)
 logout not working on Profilepage (Profilepage)
 liked recipe ui not according to the theme(Profilepage)
-arrow to be removed from liked recipes (Profilepage)
+arrow to be removed from liked recipes (Profilepage) alldone.
 
 
 admin:
 recipecard: remove edit, feature and archive options
 make logout funtionality working
-remove + from app Bar
+remove + from app Bar  done!!
