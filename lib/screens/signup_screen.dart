@@ -4,10 +4,18 @@ import '../bloc/auth/auth_bloc.dart';
 import '../bloc/auth/auth_event.dart';
 import '../bloc/auth/auth_state.dart';
 
-class SignupScreen extends StatelessWidget {
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({super.key});
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _SignupScreenState createState() => _SignupScreenState();
+}
+
+class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
+  bool _obscurePassword = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,11 +71,11 @@ class SignupScreen extends StatelessWidget {
                       height: 120,
                       width: 120,
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.85),
+                        color: Colors.white.withValues(),
                         borderRadius: BorderRadius.circular(30),
                         boxShadow: [
                           BoxShadow(
-                            color: Color(0xFFE65100).withOpacity(0.3),
+                            color: Color(0xFFE65100).withValues(),
                             blurRadius: 15,
                             offset: Offset(0, 5),
                           ),
@@ -120,7 +128,7 @@ class SignupScreen extends StatelessWidget {
                           ), // Darker orange when focused
                         ),
                         filled: true,
-                        fillColor: Colors.white.withOpacity(0.9),
+                        fillColor: Colors.white.withValues(),
                       ),
                       keyboardType: TextInputType.emailAddress,
                     ),
@@ -129,6 +137,7 @@ class SignupScreen extends StatelessWidget {
                     // Password Field
                     TextField(
                       controller: passwordController,
+                      obscureText: _obscurePassword,
                       style: TextStyle(
                         color: Color(0xFF3E2723),
                       ), // Dark brown text
@@ -143,11 +152,16 @@ class SignupScreen extends StatelessWidget {
                         ), // Orange icon
                         suffixIcon: IconButton(
                           icon: Icon(
-                            Icons.visibility_off,
+                            _obscurePassword
+                                ? Icons.visibility_off
+                                : Icons.visibility,
                             color: Color(0xFFFF9800),
                           ),
-                          onPressed:
-                              () {}, // Add toggle functionality if needed
+                          onPressed: () {
+                            setState(() {
+                              _obscurePassword = !_obscurePassword;
+                            });
+                          }, // Add toggle functionality if needed
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -163,9 +177,8 @@ class SignupScreen extends StatelessWidget {
                           ), // Darker orange when focused
                         ),
                         filled: true,
-                        fillColor: Colors.white.withOpacity(0.9),
+                        fillColor: Colors.white.withValues(),
                       ),
-                      obscureText: true,
                     ),
                     SizedBox(height: 30),
 
@@ -178,7 +191,7 @@ class SignupScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                         boxShadow: [
                           BoxShadow(
-                            color: Color(0xFFE65100).withOpacity(0.3),
+                            color: Color(0xFFE65100).withValues(),
                             blurRadius: 10,
                             offset: Offset(0, 5),
                           ),
