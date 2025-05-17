@@ -124,3 +124,22 @@ Feel free to fork this repo and submit pull requests. Suggestions, issues, and i
 
 
 ## 📸 Screenshots
+
+![Home_page](https://github.com/user-attachments/assets/9c413b6a-c51b-4552-b925-51e2162d05bd)
+![Login](https://github.com/user-attachments/assets/616de705-d299-41d5-a691-aba8f0c8279a)
+![Recipe_list](https://github.com/user-attachments/assets/091f027e-83bb-4b26-bf85-2b0c6c7d3801)
+![Recipe_Detail](https://github.com/user-attachments/assets/f17cda45-6932-4a0a-aa82-d5d74c999dc7)
+![Like_Screen](https://github.com/user-attachments/assets/dce10efc-cd20-4755-8446-8a8e40f42113)
+![comment_manage](https://github.com/user-attachments/assets/2deb807d-7f2e-4e3f-865a-fccdd0deeea8)
+![Comment_delete](https://github.com/user-attachments/assets/08bf064f-4377-41fa-88ca-be698921189a)
+![admin_list](https://github.com/user-attachments/assets/9eca222c-c189-4be7-84cc-18091b85df86)
+![Add_recipe_screen](https://github.com/user-attachments/assets/348f465c-4839-4965-9a91-e2501d8eaca2)
+
+
+
+
+
+
+
+
+
